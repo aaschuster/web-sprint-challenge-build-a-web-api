@@ -39,4 +39,10 @@ router.delete("/:id", validateProjectID, (req, res, next) => {
         .catch(next);
 })
 
+router.get("/:id/actions", validateProjectID, (req, res, next) => {
+    Projects.getProjectActions(req.params.id)
+        .then( actions => res.json(actions) )
+        .catch(next);
+})
+
 module.exports = router;
