@@ -13,7 +13,7 @@ function validateProject(req, res, next) {
     let { name, description } = req.body;
 
     const failureError = {
-        message: "Project name and description and required.",
+        message: "Project name and description and required and must be strings.",
         status: 400
     };
 
