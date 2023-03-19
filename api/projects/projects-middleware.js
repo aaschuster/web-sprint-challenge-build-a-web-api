@@ -10,12 +10,17 @@ async function validateProjectID(req, res, next) {
 }
 
 function validateProject(req, res, next) {
-    let { name, description } = req.body;
+    let { name, description, completed } = req.body;
 
     const failureError = {
         message: "Project name and description and required and must be strings.",
         status: 400
     };
+
+    if(req.method === "PUT" && typeof completed !== "boolean") next({
+        message: "Completed status required when updating.",
+        status: 400
+    });
 
     if(name && typeof name == "string" && description && typeof description == "string") {
         name = name.trim();
