@@ -12,14 +12,18 @@ async function validateProjectID(req, res, next) {
 function validateProject(req, res, next) {
     let { name, description } = req.body;
 
-    if(name) name = name.trim();
-    if(description) description = description.trim();
-
-    if(name && description) next();
-    else next({
+    const failureError = {
         message: "Project name and description and required.",
         status: 422
-    });
+    };
+
+    if(name && typeof name == "string" && description && typeof description == "string") {
+        name = name.trim();
+        description = description.trim();
+
+        if(name && description) next();
+        else next(failureError);
+    } else next(failureError);
 }
 
 module.exports = {
