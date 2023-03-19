@@ -14,7 +14,7 @@ function validateProject(req, res, next) {
 
     const failureError = {
         message: "Project name and description and required.",
-        status: 422
+        status: 400
     };
 
     if(name && typeof name == "string" && description && typeof description == "string") {
