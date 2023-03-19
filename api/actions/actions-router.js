@@ -27,4 +27,16 @@ router.post("/", validateAction, (req, res, next) => {
         .catch(next);
 })
 
+router.put("/:id", validateAction, validateActionID, (req, res, next) => {
+    Actions.update(req.params.id, req.body)
+        .then( updatedAction => res.json(updatedAction) )
+        .catch(next);
+})
+
+router.delete("/:id", validateActionID, (req, res, next) => {
+    Actions.remove(req.params.id)
+        .then(() => res.end())
+        .catch(next);
+})
+
 module.exports = router;

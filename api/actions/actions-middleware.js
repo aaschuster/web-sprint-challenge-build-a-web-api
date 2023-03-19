@@ -31,7 +31,7 @@ async function validateAction(req, res, next) {
     } catch (err) {
         next({
             message: err.message,
-            status: 422
+            status: 400
         })
     }
 }
