@@ -2,9 +2,9 @@ const express = require("express")
 
 const Actions = require("./actions-model");
 
-// const {
-
-// } = require("./actions-middleware");
+const {
+    validateActionID
+} = require("./actions-middleware");
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.get("/", (req, res, next) => {
         .catch(next);
 })
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", validateActionID, (req, res, next) => {
     Actions.get(req.params.id)
         .then( action => res.json(action) )
         .catch(next);
