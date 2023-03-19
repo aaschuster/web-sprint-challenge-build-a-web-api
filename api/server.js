@@ -12,4 +12,10 @@ const actionsRouter = require("./actions/actions-router");
 server.use("/api/projects", projectsRouter);
 // server.use("/api/actions", actionsRouter);
 
+server.use( (err, req, res, next) => {
+    res.status(err.status || 500).json({
+        message: err.message
+    })
+})
+
 module.exports = server;
